@@ -3,6 +3,8 @@ package com.example.soen387_a2;
 import com.example.soen387_a2.Dao.CourseDao;
 import com.example.soen387_a2.bean.Course;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +13,7 @@ import java.io.IOException;
 
 
 @WebServlet("/createCourse")
-public class CourseServlet extends HttpServlet{
+public class CreateCourseServlet extends HttpServlet{
 
     //private static final long serialVersionUID = 1;
     private CourseDao courseDao;
@@ -55,6 +57,16 @@ public class CourseServlet extends HttpServlet{
             e.printStackTrace();
         }
 
-        response.sendRedirect("courseDetails.jsp");
+        //response.sendRedirect("responseStatus.jsp");
+
+        request.setAttribute("alertMsg", "Course successfully created!");
+        //System.out.println(request.getAttribute("alertMsg"));
+        RequestDispatcher rd=request.getRequestDispatcher("/responseStatus.jsp");
+        try {
+            rd.include(request, response);
+            //System.out.println("success");
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -12,8 +12,15 @@
 <head>
   <meta charset="ISO-8859-1">
   <title>Insert title here</title>
+
 </head>
 <body>
-<h1>Course successfully registered!</h1>
+<%--<h1>Course successfully created!</h1>--%>
+<% String message = (String)request.getAttribute("alertMsg");%>
+
+<script type="text/javascript">
+  msg = "<%=message%>";
+  alert(msg);
+</script>
 </body>
 </html>

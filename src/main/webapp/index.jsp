@@ -8,6 +8,10 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="courseRegisterPage.jsp">To add a course</a>
+<a href="createCoursePage.jsp">Admin:   To create a course</a>
+<br/>
+<a href="registerStudentCourse.jsp">Student:    To add a course</a>
+<br/>
+<a href="dropStudentCourse.jsp">Student:    To drop a course</a>
 </body>
 </html>
