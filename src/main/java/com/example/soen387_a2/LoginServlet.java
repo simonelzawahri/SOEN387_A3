@@ -23,23 +23,30 @@ public class LoginServlet extends HttpServlet {
         UserDAO u = new UserDAO();
         User user = new User();
 
-        //check if user is in db
-        if(u.check(loginID, loginPass)){
-            HttpSession session = req.getSession();
-            //get user data and save in session
-            user = u.selectUser(loginID, loginPass);
-            session.setAttribute("id", user.getId() );
-            session.setAttribute("pass", user.getPassword() );
-            session.setAttribute("fname", user.getFirstName() );
-            session.setAttribute("lname", user.getLastName() );
-            session.setAttribute("address", user.getAddress() );
-            session.setAttribute("email", user.getEmail() );
-            session.setAttribute("phone", user.getPhone() );
-            session.setAttribute("dob", user.getDob() );
-            session.setAttribute("admin", user.getAdmin() );
-            res.sendRedirect("welcome.jsp");
+        if(u.check(loginID)){
+            //if user is in db -> verify password
+            user = u.selectUser(loginID);
+            if(user.getPassword().equals(loginPass)){
+                //user authenticated -> start session
+                HttpSession session = req.getSession();
+                //get user data and set in session
+                user = u.selectUser(loginID);
+                session.setAttribute("id", user.getId() );
+                session.setAttribute("pass", user.getPassword() );
+                session.setAttribute("fname", user.getFirstName() );
+                session.setAttribute("lname", user.getLastName() );
+                session.setAttribute("address", user.getAddress() );
+                session.setAttribute("email", user.getEmail() );
+                session.setAttribute("phone", user.getPhone() );
+                session.setAttribute("dob", user.getDob() );
+                session.setAttribute("admin", user.getAdmin() );
+                //send to welcome
+                res.sendRedirect("welcome.jsp");
+            } else {
+                res.sendRedirect("login.jsp?errorIncorrectPassword=yes");
+            }
         } else {
-            res.sendRedirect("login.jsp");
+            res.sendRedirect("login.jsp?errorUserNotFound=yes");
 
         }
 

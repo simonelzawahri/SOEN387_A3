@@ -2,8 +2,10 @@
 <jsp:include page="header.jsp"/>
 
 <div class="main">
-    <h1><%= "Hello Homepage" %></h1>
 
+
+
+    ADD COURSE
 
 
 </div>

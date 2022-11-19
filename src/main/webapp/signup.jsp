@@ -70,6 +70,16 @@
         <br>
         <input type="submit" name="submit" value="Signup" id="button">
 
+        <%
+            String x = request.getParameter("errorIDTaken");
+            //if id is taken
+            if (request.getParameter("errorIDTaken") != null){
+                out.print("<p style='color: red; font-weight: 600;'>ID is taken!<br> Enter a unique ID.</p>");
+            }
+            if (request.getParameter("signupSuccess") != null){
+                out.print("<p style='color: green; font-weight: 600;'>Account created successfully!<br> You may now Log in.</p>");
+            }
+        %>
     </form>
 </div>
 

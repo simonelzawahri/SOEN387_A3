@@ -1,23 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: shanshan
-  Date: 11/13/2022
-  Time: 4:23 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="ISO-8859-1">
-    <title>course creation page</title>
-</head>
-<body>
-<div align="center">
+
+<jsp:include page="header.jsp"/>
+
+
+<div class="main">
     <h1>Create a new course: </h1>
     <form action="<%= request.getContextPath() %>/createCourse" method="post">
-
         <p>Key in the course detail:</p>
         <label for="Code">Course Code:</label>
         <input type = "number" name = "course_code" id = "Code" /><br/>
@@ -52,5 +39,9 @@
         <input type = "submit" name = "submit" value = "Create" id="button" />
     </form>
 </div>
+
+
+
+
 </body>
 </html>

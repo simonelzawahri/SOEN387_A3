@@ -53,18 +53,13 @@ public class SignupServlet extends HttpServlet {
         try {
             //if user id doesnt exist -> insert user in db -> redirect user to login page
             if(!userDAO.idExists(user)){
-
-                PrintWriter out = res.getWriter();
-                out.print("no exist");
-
-                if (userDAO.insertUser(user) != 0) {
-                    res.sendRedirect("login.jsp");
+                //if user created successfully, redirect to login page
+                if (userDAO.createUser(user) > 0) {
+                    res.sendRedirect("signup.jsp?signupSuccess=yes");
                 }
             } else {
-
-                PrintWriter out = res.getWriter();
-                out.print("exist");
-//                res.sendRedirect("signup.jsp");
+                //else user already exists
+                res.sendRedirect("signup.jsp?errorIDTaken=yes");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -26,16 +26,22 @@
     <a href="signup.jsp">Signup</a>
 
     <%
-
       if ( !(session.getAttribute("admin")== null) ) {
         String x = session.getAttribute("admin").toString();
         //if admin
         if(Integer.parseInt(x) == 1 ){
           out.print("<a href=\"createCoursePage.jsp\">Create a Course</a>");
+          out.print("<a href=\"admin_student_course_list.jsp\">Get Student course-list</a>");
+          out.print("<a href=\"admin_course_student_list.jsp\">Get Course student-list</a>");
         }
+        //if student
+        if(Integer.parseInt(x) == 0 ){
+          out.print("<a href=\"student_add_course.jsp\">Add Course</a>");
+          out.print("<a href=\"student_drop_course.jsp\">Drop Course</a>");
+          out.print("<a href=\"xxx.jsp\">Another thing</a>");
+        }
+
       }
-
-
 
     %>
 

@@ -20,15 +20,14 @@ public class UserDAO {
     }
 
 
-    public boolean check(int id, String pass)  {
-        String stmt = "SELECT id FROM users WHERE ID=? AND Password=?";
+    public boolean check(int id)  {
+        String stmt = "SELECT id FROM users WHERE ID=?";
         try{
             //establish connection
             Connection conn = getConnection();
             //create statement using connection object
             PreparedStatement ps = conn.prepareStatement(stmt);
             ps.setInt(1, id);
-            ps.setString(2, pass);
             //execute query
             ResultSet rs = ps.executeQuery();
             //read data from ResultSet
@@ -39,8 +38,8 @@ public class UserDAO {
     }
 
 
-    public User selectUser(int id, String pass){
-        String stmt = "SELECT * FROM users WHERE ID=? AND Password=?";
+    public User selectUser(int id){
+        String stmt = "SELECT * FROM users WHERE ID=?";
         User user = new User();
         try {
             //establish connection
@@ -48,7 +47,6 @@ public class UserDAO {
             //create statement using connection object
             PreparedStatement ps = conn.prepareStatement(stmt);
             ps.setInt(1, id);
-            ps.setString(2, pass);
             //execute query
             ResultSet rs = ps.executeQuery();
             //read data from ResultSet
@@ -97,7 +95,7 @@ public class UserDAO {
         }
     }
 
-        public int insertUser(User user) throws ClassNotFoundException {
+        public int createUser(User user) throws ClassNotFoundException {
             String stmt = "INSERT INTO users (ID, Password, FirstName, LastName, Address, Email, Phone, DOB, Admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             int result = 0;
             try{
