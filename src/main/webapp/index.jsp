@@ -3,7 +3,11 @@
 
 <div class="mainHome">
     <h1><%= "Hello Homepage" %></h1>
-    <p>paragraph</p>
+    <%
+        if ( !(session.getAttribute("id")==null) ) {
+            out.print("<p>Welcome back, " + session.getAttribute("fname") + " " + session.getAttribute("lname") + "</p>");
+        }
+    %>
 
 
 

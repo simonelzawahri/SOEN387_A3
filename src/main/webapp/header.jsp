@@ -30,14 +30,13 @@
             String x = session.getAttribute("admin").toString();
             //if admin
             if(Integer.parseInt(x) == 1 ){
-              out.print("<li><a href=\"createCoursePage.jsp\">Create a Course</a></li>");
-              out.print("<li><a href=\"admin_student_course_list.jsp\">Get Student course-list</a></li>");
-              out.print("<li><a href=\"admin_course_student_list.jsp\">Get Course student-list</a></li>");
+              out.print("<li><a href=\"admin_create_course.jsp\">Create a Course</a></li>");
+              out.print("<li><a href=\"admin_student_course_list.jsp\">Student course-list</a></li>");
+              out.print("<li><a href=\"admin_course_student_list.jsp\">Course student-list</a></li>");
             } //if student
             else if(Integer.parseInt(x) == 0 ){
               out.print("<li><a href=\"student_add_course.jsp\">Add Course</a></li>");
               out.print("<li><a href=\"student_drop_course.jsp\">Drop Course</a></li>");
-              out.print("<a href=\"xxx.jsp\">Another thing</a></li>");
             }
             out.print("<li><a href=\"logout.jsp\">Logout</a></li>");
           } else {

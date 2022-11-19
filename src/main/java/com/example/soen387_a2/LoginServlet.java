@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("dob", user.getDob() );
                 session.setAttribute("admin", user.getAdmin() );
                 //send to welcome
-                res.sendRedirect("welcome.jsp");
+                res.sendRedirect("index.jsp");
             } else {
                 res.sendRedirect("login.jsp?errorIncorrectPassword=yes");
             }
