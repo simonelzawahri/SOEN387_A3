@@ -6,16 +6,13 @@
     if(session.getAttribute("id")==null ){
         response.sendRedirect("login.jsp");
     }
-
 %>
-
 
 <div class="mainWelcome">
     WELCOME, ${fname} ${lname}
 
 
 </div>
-
 
 
 
