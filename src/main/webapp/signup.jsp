@@ -3,7 +3,6 @@
 
 <div class="mainSignup">
     <h1>Signup</h1>
-
     <form method="POST" action="<%= request.getContextPath() %>/signup" id="SignUpForm">
         Select one:
         <br>
