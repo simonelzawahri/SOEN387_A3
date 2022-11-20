@@ -35,8 +35,8 @@
               out.print("<li><a href=\"admin_course_student_list.jsp\">Course student-list</a></li>");
             } //if student
             else if(Integer.parseInt(x) == 0 ){
-//              out.print("<li><a href=\"student_browse_courses.jsp\">Browse Courses</a></li>");
-//              out.print("<li><a href=\"student_my_courses.jsp\">My Courses</a></li>");
+              out.print("<li><a href=\"student_browse_courses.jsp\">Browse Courses</a></li>");
+              out.print("<li><a href=\"student_my_courses.jsp\">My Courses</a></li>");
               out.print("<li><a href=\"student_add_course.jsp\">Add Course</a></li>");
               out.print("<li><a href=\"student_drop_course.jsp\">Drop Course</a></li>");
             }
