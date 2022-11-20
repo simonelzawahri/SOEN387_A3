@@ -57,11 +57,11 @@ public class CreateCourseServlet extends HttpServlet{
             e.printStackTrace();
         }
 
-        //response.sendRedirect("responseStatus.jsp");
+        //response.sendRedirect("responseStatusStudent.jsp");
 
         request.setAttribute("alertMsg", "Course successfully created!");
         //System.out.println(request.getAttribute("alertMsg"));
-        RequestDispatcher rd=request.getRequestDispatcher("/responseStatus.jsp");
+        RequestDispatcher rd=request.getRequestDispatcher("/responseStatusAdmin.jsp");
         try {
             rd.include(request, response);
             //System.out.println("success");

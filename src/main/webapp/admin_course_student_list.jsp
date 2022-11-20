@@ -3,10 +3,8 @@
 
 <div class="mainCourseStudentList">
     ADMIN COURSE STUDENT LIST
-    <form method = "post" action = "admin_course_student_list_action.php">
-        <%
-            //REPLACE PHP
-        %>
+    <form method = "post" action="<%= request.getContextPath() %>/AdminGetReportServlet">
+
         <div>
             <p>Key in the course ID to search registered student:</p>
             <label for="courseCode">Course Code:</label>

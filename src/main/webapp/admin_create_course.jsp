@@ -5,9 +5,6 @@
 <div class="mainCreateCourse">
     <h1>Create a new course: </h1>
     <form action="<%= request.getContextPath() %>/createCourse" method="post">
-        <%
-            //REPLACE PHP
-        %>
 
         <div>
             <p>Key in the course detail:</p>

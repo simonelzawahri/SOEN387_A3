@@ -4,7 +4,7 @@
 
 <div class="mainStudentCourseList">
     ADMIN STUDENT COURSE LIST
-    <form method = "post" action = "../admin_reportByCourse.php">
+    <form method = "post" action="<%= request.getContextPath() %>/AdminGetReportServlet">
         <%
             //REPLACE PHP
         %>
