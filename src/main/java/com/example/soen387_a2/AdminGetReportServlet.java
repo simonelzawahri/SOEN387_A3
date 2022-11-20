@@ -22,6 +22,7 @@ public class AdminGetReportServlet extends HttpServlet{
     PreparedStatement preparedStatement = null;
     String query = null;
 
+    boolean isID = false;
     public void init() {
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -47,6 +48,7 @@ public class AdminGetReportServlet extends HttpServlet{
         PrintWriter out = response.getWriter();
 
         if(request.getParameter("stu_id") != null){
+            isID = true;
             int stu_id = Integer.parseInt(request.getParameter("stu_id"));
             query = "select * from stu_courses WHERE stu_id = " + stu_id;
         }else{
@@ -59,7 +61,8 @@ public class AdminGetReportServlet extends HttpServlet{
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 
-            out.println("<html><body><div align=\"center\"><h2>The student has following courses registered : </h2>");
+            if(isID) out.println("<html><body><div align=\"center\"><h2>The student has following courses registered : </h2>");
+            else out.println("<html><body><div align=\"center\"><h2>The course has following students enrolled : </h2>");
             out.println("<hr></br><table cellspacing='0' cellpadding='5' border='1'>");
             out.println("<tr>");
             out.println("<td><b>Student ID</b></td>");
