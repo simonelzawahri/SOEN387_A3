@@ -11,9 +11,9 @@ import java.io.PrintWriter;
 import java.sql.*;
 
 @WebServlet("/browseCourse")
-public class browseCourse extends HttpServlet{
+public class BrowseCourse extends HttpServlet{
 
-  public browseCourse() {
+  public BrowseCourse() {
 
   }
 

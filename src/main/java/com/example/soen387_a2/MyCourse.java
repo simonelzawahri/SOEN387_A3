@@ -11,8 +11,8 @@ import java.io.PrintWriter;
 import java.sql.*;
 
   @WebServlet("/MyCourse")
-public class myCourse extends HttpServlet{
-    public myCourse() {
+public class MyCourse extends HttpServlet{
+    public MyCourse() {
 
     }
     //private static final long serialVersionUID = 1;
@@ -51,17 +51,8 @@ public class myCourse extends HttpServlet{
         query = "select * from stu_courses WHERE stu_id = " + stu_id;
 
         try {
-
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
-
-            out.println("<html><body><div align=\"center\"><h2>You have following courses registered: </h2>");
-            out.println("<hr></br><table cellspacing='0' cellpadding='5' border='1'>");
-            out.println("<tr>");
-            out.println("<td><b>Student ID</b></td>");
-            out.println("<td><b>Course Code</b></td>");
-            out.println("<td><b>Semester</b></td>");
-            out.println("</tr>");
 
             while(resultSet.next()) {
                 out.println("<tr>");
