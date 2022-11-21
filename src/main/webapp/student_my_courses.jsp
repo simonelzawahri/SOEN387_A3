@@ -9,6 +9,9 @@
 MY COURSES
 </div>
 
+<div class="myCourse" action = "<%= request.getContextPath() %>/MyCourse">
+</div>
+
 
 
 </body>

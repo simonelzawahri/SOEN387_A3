@@ -3,11 +3,11 @@
 
 <jsp:include page="header.jsp"/>
 
-
-<div class="mainCreateCourse">
-
-
+<div>
   BROWSE COURSES
+</div>
+
+<div class="browseCourse" action = "<%= request.getContextPath() %>/BrowseCourse">
 </div>
 
 
