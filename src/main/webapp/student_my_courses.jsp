@@ -6,13 +6,13 @@
 <div class="mainCreateCourse">
 
     <%
-        out.println("<h1>You have following courses registered: </h1>");
-        out.println("<hr></br><table cellspacing='0' cellpadding='5' border='1'>");
-        out.println("<tr>");
-        out.println("<td><b>Student ID</b></td>");
-        out.println("<td><b>Course Code</b></td>");
-        out.println("<td><b>Semester</b></td>");
-        out.println("</tr>");
+        out.print("<h1>You have following courses registered: </h1>");
+        out.print("<hr></br><table cellspacing='0' cellpadding='5' border='1'>");
+        out.print("<tr>");
+        out.print("<td><b>Student ID</b></td>");
+        out.print("<td><b>Course Code</b></td>");
+        out.print("<td><b>Semester</b></td>");
+        out.print("</tr>");
 
 
 

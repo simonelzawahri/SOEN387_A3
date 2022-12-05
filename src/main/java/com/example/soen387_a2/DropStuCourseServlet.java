@@ -1,6 +1,6 @@
 package com.example.soen387_a2;
 
-import com.example.soen387_a2.Dao.StuCourseDao;
+import com.example.soen387_a2.DAO.StudentCoursesDAO;
 import com.example.soen387_a2.bean.Course;
 import com.example.soen387_a2.bean.User;
 
@@ -24,7 +24,7 @@ public class DropStuCourseServlet extends HttpServlet {
     }
 
     //private static final long serialVersionUID = 1;
-    private StuCourseDao StuCourseDao;
+    private StudentCoursesDAO studentCoursesDao;
     private User student;
     private Course course;
 
@@ -33,7 +33,7 @@ public class DropStuCourseServlet extends HttpServlet {
     java.util.Date inputDate;
 
     public void init() {
-        StuCourseDao = new StuCourseDao();
+        studentCoursesDao = new StudentCoursesDAO();
         student = new User();
         course = new Course();
     }
@@ -41,10 +41,10 @@ public class DropStuCourseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        StuCourseDao.modifyObject(request, response, course, student);
+        studentCoursesDao.modifyObject(request, response, course, student);
 
         try {
-            courseDate = StuCourseDao.selectEndDate(course);
+            courseDate = studentCoursesDao.selectEndDate(course);
 
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
@@ -76,7 +76,7 @@ public class DropStuCourseServlet extends HttpServlet {
         }
         else {
             try {
-                StuCourseDao.deleteStudentCourse(student, course);
+                studentCoursesDao.deleteStudentCourse(student, course);
             } catch (Exception e) {
                 e.printStackTrace();
             }

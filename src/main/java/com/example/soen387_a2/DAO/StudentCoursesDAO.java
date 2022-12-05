@@ -1,17 +1,123 @@
-package com.example.soen387_a2.Dao;
+package com.example.soen387_a2.DAO;
 
 import com.example.soen387_a2.bean.Course;
+import com.example.soen387_a2.bean.Student;
 import com.example.soen387_a2.bean.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 
-/**
- * student can select OR drop a course
- */
-public class StuCourseDao {
+
+public class StudentCoursesDAO {
+
+
+    protected Connection getConnection(){
+        Connection conn;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soen387__a1", "root", "");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return conn;
+    }
+
+
+    public ArrayList<Course> getCoursesByStudentID(int id){
+        String stmt = "SELECT * FROM student_courses WHERE ID=?";
+        ArrayList<Course> courses = new ArrayList<Course>();
+        try {
+            //establish connection
+            Connection conn = getConnection();
+            //create statement using connection object
+            PreparedStatement ps = conn.prepareStatement(stmt);
+            ps.setInt(1, id);
+            //execute query
+            ResultSet rs = ps.executeQuery();
+            //read data from ResultSet and store courses in ArrayList of Course obj
+            while(rs.next()){
+                //read data from ResultSet
+                int course_code = Integer.parseInt(rs.getString("Code"));
+                String semester = rs.getString("semester");
+                //set data to Course obj and add to ArrayList
+                Course c = new Course();
+                c.setCode(course_code);
+                c.setSemester(semester);
+                courses.add(c);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        //use CourseDAO to get Course data for each course
+        CourseDAO courseDAO = new CourseDAO();
+        for (Course c: courses) {
+            c.setTitle( courseDAO.selectCourse(c.getCode()).getTitle() );
+            c.setDays( courseDAO.selectCourse(c.getCode()).getDays() );
+            c.setTime( courseDAO.selectCourse(c.getCode()).getTime() );
+            c.setInstructor( courseDAO.selectCourse(c.getCode()).getInstructor() );
+            c.setRoom( courseDAO.selectCourse(c.getCode()).getRoom() );
+            c.setStartDate( courseDAO.selectCourse(c.getCode()).getStartDate() );
+            c.setEndDate( courseDAO.selectCourse(c.getCode()).getEndDate() );
+            c.setInstructorId( courseDAO.selectCourse(c.getCode()).getInstructorId() );
+        }
+        return courses;
+    }
+
+
+
+    public ArrayList<Student> getStudentsByCourseCode(int code){
+        String stmt = "SELECT * FROM student_courses WHERE Code=?";
+        ArrayList<Student> students = new ArrayList<Student>();
+        try {
+            //establish connection
+            Connection conn = getConnection();
+            //create statement using connection object
+            PreparedStatement ps = conn.prepareStatement(stmt);
+            ps.setInt(1, code);
+            //execute query
+            ResultSet rs = ps.executeQuery();
+            //read data from ResultSet and store students in ArrayList of Student obj
+            while(rs.next()){
+                //read data from ResultSet
+                int stu_id = Integer.parseInt(rs.getString("ID"));
+//                int course_code = Integer.parseInt(rs.getString("Code"));
+//                String semester = rs.getString("semester");
+                //set data to Student obj and add to ArrayList
+                Student s = new Student();
+                s.setId(stu_id);
+                students.add(s);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        //use UserDAO to get Student data for each student
+        UserDAO dao = new UserDAO();
+        for (Student s: students) {
+//            s.setId( dao.selectUser(s.getId()).getId() );
+            s.setFirstName( dao.selectUser(s.getId()).getFirstName() );
+            s.setLastName( dao.selectUser(s.getId()).getLastName() );
+            s.setAddress( dao.selectUser(s.getId()).getAddress() );
+            s.setEmail( dao.selectUser(s.getId()).getEmail() );
+            s.setPhone( dao.selectUser(s.getId()).getPhone() );
+            s.setDob( dao.selectUser(s.getId()).getDob() );
+        }
+        return students;
+    }
+
+
+
+
+
+
+
+
+
+
 
     public static Date selectStartDate(Course course) throws ClassNotFoundException, SQLException {
         String SELECT_StartDATE = "SELECT StartDate FROM course WHERE code = ? ";
@@ -107,7 +213,7 @@ public class StuCourseDao {
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COURSE_SQL)) {
             preparedStatement.setInt(1, user.getId());
             preparedStatement.setInt(2, course.getCode());
-            preparedStatement.setInt(3, course.getSemester());
+            preparedStatement.setString(3, course.getSemester());
 
 
             System.out.println(preparedStatement);
@@ -191,7 +297,7 @@ public class StuCourseDao {
     public static void modifyObject(HttpServletRequest request, HttpServletResponse response, Course course, User student) throws IOException {
         int id = Integer.parseInt(request.getParameter("stu_id"));
         int code = Integer.parseInt(request.getParameter("course_code"));
-        int semester = Integer.parseInt(request.getParameter("course_semester"));
+        String semester = request.getParameter("course_semester");
 
         course.setCode(code);
         student.setId(id);

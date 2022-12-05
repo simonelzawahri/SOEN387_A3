@@ -1,6 +1,6 @@
 package com.example.soen387_a2;
 
-import com.example.soen387_a2.Dao.StuCourseDao;
+import com.example.soen387_a2.DAO.StudentCoursesDAO;
 import com.example.soen387_a2.bean.Course;
 import com.example.soen387_a2.bean.User;
 
@@ -17,15 +17,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-@WebServlet("/registerStudentCourse")
-public class RegisterStuCourseServlet extends HttpServlet {
+@WebServlet("/StudentAddCourse")
+public class StudentAddCourseServlet extends HttpServlet {
 
-    public RegisterStuCourseServlet() {
+    public StudentAddCourseServlet() {
 
     }
 
     //private static final long serialVersionUID = 1;
-    private StuCourseDao StuCourseDao;
+    private StudentCoursesDAO studentCoursesDao;
     private User student;
     private Course course;
 
@@ -35,7 +35,7 @@ public class RegisterStuCourseServlet extends HttpServlet {
     java.util.Date courseDateRange;
     int counter = 0;
     public void init() {
-        StuCourseDao = new StuCourseDao();
+        studentCoursesDao = new StudentCoursesDAO();
         student = new User();
         course = new Course();
     }
@@ -43,10 +43,10 @@ public class RegisterStuCourseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        StuCourseDao.modifyObject(request, response, course, student);
+        studentCoursesDao.modifyObject(request, response, course, student);
 
         try {
-            counter = StuCourseDao.getTermCount(student,course);
+            counter = studentCoursesDao.getTermCount(student,course);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -69,7 +69,7 @@ public class RegisterStuCourseServlet extends HttpServlet {
         // inputDate: 10-19 || 10-11
         try {
             System.out.println("course code :: "+course.getCode());
-            courseDate = StuCourseDao.selectStartDate(course);
+            courseDate = studentCoursesDao.selectStartDate(course);
 
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
@@ -108,7 +108,7 @@ public class RegisterStuCourseServlet extends HttpServlet {
         }
         else {
             try {
-                StuCourseDao.updateStudentCourse(student, course);
+                studentCoursesDao.updateStudentCourse(student, course);
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

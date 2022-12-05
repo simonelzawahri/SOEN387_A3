@@ -8,8 +8,8 @@ public class Course implements Serializable{
     //private static final long serialVersionUID = 1;
     private int code;
     private String title;
-    private int semester;
-    private int days;
+    private String semester;
+    private String days;
     private String time;
     private String instructor;
     private String room;
@@ -33,19 +33,19 @@ public class Course implements Serializable{
         this.title = title;
     }
 
-    public int getSemester() {
+    public String getSemester() {
         return semester;
     }
 
-    public void setSemester(int semester) {
+    public void setSemester(String semester) {
         this.semester = semester;
     }
 
-    public int getDays() {
+    public String getDays() {
         return days;
     }
 
-    public void setDays(int days) {
+    public void setDays(String days) {
         this.days = days;
     }
 
@@ -97,5 +97,18 @@ public class Course implements Serializable{
         this.instructorId = instructorId;
     }
 
+    public String toString() {
+        return "Course{" +
+                "code=" + code +
+                ", title='" + title + '\'' +
+                ", semester=" + semester +
+                ", days=" + days +
+                ", time='" + time + '\'' +
+                ", instructor='" + instructor + '\'' +
+                ", room='" + room + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", instructorId=" + instructorId +
+                '}';
+    }
 }
-

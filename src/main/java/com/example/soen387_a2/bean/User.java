@@ -86,5 +86,19 @@ public class User implements Serializable{
     public void setAdmin(int admin) {
         this.admin = admin;
     }
+
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", dob='" + dob + '\'' +
+                ", admin=" + admin +
+                '}';
+    }
 }
 

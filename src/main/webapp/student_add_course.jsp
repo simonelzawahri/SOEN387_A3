@@ -4,7 +4,7 @@
 <div class="mainCreateCourse">
 
     <h1>Register a new course: </h1>
-    <form action="<%= request.getContextPath() %>/registerStudentCourse" method="post">
+    <form action="<%= request.getContextPath() %>/StudentAddCourse" method="post">
 
         <label for="Id">Student Id:</label>
         <input type = "number" name = "stu_id" id = "Id" /><br/>

@@ -1,4 +1,4 @@
-package com.example.soen387_a2.Dao;
+package com.example.soen387_a2.DAO;
 
 import com.example.soen387_a2.bean.User;
 
@@ -6,11 +6,12 @@ import java.sql.*;
 
 public class UserDAO {
 
+
     protected Connection getConnection(){
-        Connection conn = null;
+        Connection conn;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soen387_a1", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soen387__a1", "root", "");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -20,7 +21,52 @@ public class UserDAO {
     }
 
 
-    public boolean check(int id)  {
+    public boolean idExists(User user) throws ClassNotFoundException {
+        String stmt = "SELECT id FROM users WHERE ID=?";
+        try{
+            //establish connection
+            Connection conn = getConnection();
+            //create statement using connection object
+            PreparedStatement ps = conn.prepareStatement(stmt);
+            ps.setInt(1, user.getId());
+            //execute query
+            ResultSet rs = ps.executeQuery();
+            //read data from ResultSet
+            return rs.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public int createUser(User user) throws ClassNotFoundException {
+        String stmt = "INSERT INTO users (ID, Password, FirstName, LastName, Address, Email, Phone, DOB, Admin) "
+                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        int result = 0;
+        try{
+            //establish connection
+            Connection conn = getConnection();
+            //create statement using connection object
+            PreparedStatement ps = conn.prepareStatement(stmt);
+            ps.setInt(1, user.getId());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getFirstName());
+            ps.setString(4, user.getLastName());
+            ps.setString(5, user.getAddress());
+            ps.setString(6, user.getEmail());
+            ps.setString(7, user.getPhone());
+            ps.setString(8, user.getDob());
+            ps.setInt(9, user.getAdmin());
+            //execute query
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+
+    public boolean checkID(int id)  {
         String stmt = "SELECT id FROM users WHERE ID=?";
         try{
             //establish connection
@@ -51,6 +97,7 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
             //read data from ResultSet
             while(rs.next()){
+                //read data from ResultSet
                 int rs_id = Integer.parseInt(rs.getString("ID"));
                 String rs_pass = rs.getString("Password");
                 String rs_fname = rs.getString("FirstName");
@@ -60,7 +107,7 @@ public class UserDAO {
                 String rs_phone = rs.getString("Phone");
                 String rs_dob = rs.getString("DOB");
                 int rs_admin = Integer.parseInt(rs.getString("Admin"));
-
+                //set data to user object
                 user.setId(rs_id);
                 user.setPassword(rs_pass);
                 user.setFirstName(rs_fname);
@@ -77,48 +124,6 @@ public class UserDAO {
         return user;
     }
 
-
-    public boolean idExists(User user) throws ClassNotFoundException {
-        String stmt = "SELECT id FROM users WHERE ID=?";
-        try{
-            //establish connection
-            Connection conn = getConnection();
-            //create statement using connection object
-            PreparedStatement ps = conn.prepareStatement(stmt);
-            ps.setInt(1, user.getId());
-            //execute query
-            ResultSet rs = ps.executeQuery();
-            //read data from ResultSet
-            return rs.next();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-        public int createUser(User user) throws ClassNotFoundException {
-            String stmt = "INSERT INTO users (ID, Password, FirstName, LastName, Address, Email, Phone, DOB, Admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-            int result = 0;
-            try{
-                //establish connection
-                Connection conn = getConnection();
-                //create statement using connection object
-                PreparedStatement ps = conn.prepareStatement(stmt);
-                ps.setInt(1, user.getId());
-                ps.setString(2, user.getPassword());
-                ps.setString(3, user.getFirstName());
-                ps.setString(4, user.getLastName());
-                ps.setString(5, user.getAddress());
-                ps.setString(6, user.getEmail());
-                ps.setString(7, user.getPhone());
-                ps.setString(8, user.getDob());
-                ps.setInt(9, user.getAdmin());
-                //execute query
-                result = ps.executeUpdate();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        return result;
-    }
 
     private void printSQLException(SQLException ex) {
         for (Throwable e: ex) {

@@ -1,6 +1,6 @@
 package com.example.soen387_a2;
 
-import com.example.soen387_a2.Dao.UserDAO;
+import com.example.soen387_a2.DAO.UserDAO;
 import com.example.soen387_a2.bean.User;
 
 import javax.servlet.ServletException;
@@ -8,9 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/signup")
 public class SignupServlet extends HttpServlet {

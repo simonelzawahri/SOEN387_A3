@@ -225,6 +225,8 @@ body .mainStudentAdd{
 
 
 
+
+
 body .mainCreateCourse{
     width: 400px;
     padding: 20px;
@@ -253,33 +255,12 @@ body .mainCreateCourse input#button:hover {
     background: #d4af37;
 }
 
-body .mainCourseStudentList{
-    width: 400px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    border-top: 5px solid #d4af37;
-    margin: 100px auto;
-    text-align: center;
-}
 
-body .mainCourseStudentList input#button {
-    text-align: center;
-    font-size: 18px;
-    padding: 0%;
-    width: 100%;
-    height: 42px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    font-family: Montserrat;
-    outline: none;
-}
 
-body .mainCourseStudentList input#button:hover {
-    background: #d4af37;
-}
+
+
+
+
 
 body .mainStudentCourseList{
     width: 400px;
@@ -309,6 +290,57 @@ body .mainStudentCourseList input#button:hover {
     background: #d4af37;
 }
 
+
+
+
+
+
+
+body .mainCourseStudentList{
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #d4af37;
+    margin: 100px auto;
+    text-align: center;
+}
+
+body .mainCourseStudentList input#button {
+    text-align: center;
+    font-size: 18px;
+    padding: 0%;
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-family: Montserrat;
+    outline: none;
+}
+
+body .mainCourseStudentList input#button:hover {
+    background: #d4af37;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body .mainStudentAdd {
     width: 400px;
     padding: 20px;
@@ -319,15 +351,6 @@ body .mainStudentAdd {
 }
 
 
-body footer{
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
 
-    height: 120px;
-    background-color: rgb(197, 134, 255);
-    border: 1px solid black; */
-    color: white;
-}
 
 
