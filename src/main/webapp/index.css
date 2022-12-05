@@ -69,7 +69,6 @@ body header p{
 
 
 
-
 body .mainHome {
     width: 90%;
     color: #d4af37;
@@ -91,8 +90,7 @@ body .mainHome p{
 
 
 
-
-
+/*----------------------------------LOGIN PAGE------------------------------------*/
 
 
 body .mainLogin{
@@ -161,12 +159,7 @@ body .mainLogin input#button:hover {
 }
 
 
-
-
-
-
-
-
+/*----------------------------------SIGNUP PAGE------------------------------------*/
 
 body .mainSignup{
     width: 400px;
@@ -212,20 +205,9 @@ body .mainSignup input#button:hover {
 
 
 
-body .mainStudentAdd{
-    height: auto;
-    margin: 50px;
-    padding: 20px;
-    background-color: #CAE5F2;
-}
 
 
-
-
-
-
-
-
+/*---------------------------------ADMIN PAGES------------------------------------*/
 
 body .mainCreateCourse{
     width: 400px;
@@ -254,9 +236,6 @@ body .mainCreateCourse input#button {
 body .mainCreateCourse input#button:hover {
     background: #d4af37;
 }
-
-
-
 
 
 
@@ -294,8 +273,6 @@ body .mainStudentCourseList input#button:hover {
 
 
 
-
-
 body .mainCourseStudentList{
     width: 400px;
     padding: 20px;
@@ -328,27 +305,136 @@ body .mainCourseStudentList input#button:hover {
 
 
 
+/*----------------------------------STUDENT PAGES------------------------------------*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-body .mainStudentAdd {
+body .mainBrowseCourses{
     width: 400px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     border-top: 5px solid #d4af37;
     margin: 100px auto;
+    text-align: center;
 }
+
+body .mainBrowseCourses input#button {
+    text-align: center;
+    font-size: 18px;
+    padding: 0%;
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-family: Montserrat;
+    outline: none;
+}
+
+body .mainBrowseCourses input#button:hover {
+    background: #d4af37;
+}
+
+
+
+
+body .mainMyCourses{
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #d4af37;
+    margin: 100px auto;
+    text-align: center;
+}
+
+body .mainMyCourses input#button {
+    text-align: center;
+    font-size: 18px;
+    padding: 0%;
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-family: Montserrat;
+    outline: none;
+}
+
+body .mainMyCourses input#button:hover {
+    background: #d4af37;
+}
+
+
+
+
+
+
+body .mainAddCourse{
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #d4af37;
+    margin: 100px auto;
+    text-align: center;
+}
+
+body .mainAddCourse input#button {
+    text-align: center;
+    font-size: 18px;
+    padding: 0%;
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-family: Montserrat;
+    outline: none;
+}
+
+body .mainAddCourse input#button:hover {
+    background: #d4af37;
+}
+
+
+
+
+
+body .mainDropCourse{
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #d4af37;
+    margin: 100px auto;
+    text-align: center;
+}
+
+body .mainDropCourse input#button {
+    text-align: center;
+    font-size: 18px;
+    padding: 0%;
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-family: Montserrat;
+    outline: none;
+}
+
+body .mainDropCourse input#button:hover {
+    background: #d4af37;
+}
+
+
+
+
 
 
 

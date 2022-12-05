@@ -21,9 +21,7 @@ public class AdminStudentCourseListServlet extends HttpServlet{
         //use DAO to get courses given studentID and return ArrayList of Course obj
         StudentCoursesDAO dao = new StudentCoursesDAO();
         ArrayList<Course> courses = dao.getCoursesByStudentID(Integer.parseInt(request.getParameter("stu_id")));
-
         request.getSession().setAttribute("list", courses);
-
         response.sendRedirect("admin_student_course_list.jsp?gotit=t");
 
 

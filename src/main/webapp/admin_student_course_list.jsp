@@ -7,7 +7,7 @@
     <h1>Student Course List</h1>
     <form method = "post" action="<%= request.getContextPath() %>/StudentCourseList">
         <div>
-            <p>Enter student ID to get registered courses:</p>
+            <p>Enter Student ID to get registered courses:</p>
             <label for="studentCode">Student ID:</label>
             <input type = "number" name = "stu_id" id = "studentCode" />
             <br>
@@ -55,9 +55,7 @@
     </div>
 
 
-
 </div>
-
 
 
 </body>

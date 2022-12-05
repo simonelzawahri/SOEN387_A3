@@ -7,8 +7,17 @@
     <form method = "post" action="<%= request.getContextPath() %>/CourseStudentList">
         <div>
             <p>Enter course ID to generate student list:</p>
-            <label for="courseCode">Course Code:</label>
-            <input type = "number" name = "courseCode" id = "courseCode" />
+            <label for="code">Course Code:</label>
+            <input type = "number" name = "code" id = "code" />
+            <br>
+            <br>
+            <label for="semester">Semester:</label>
+            <select name="semester" id="semester" required>
+                <option value="">Select one:</option>
+                <option value="fall">Fall</option>
+                <option value="winter">Winter</option>
+                <option value="summer">Summer</option>
+            </select>
             <br>
             <br>
             <input type = "submit" name = "submit" value = "Search" id="button"/>

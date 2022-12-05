@@ -19,7 +19,7 @@ public class AdminCourseStudentListServlet extends HttpServlet {
 
         //use DAO to get students given course code and return ArrayList of Student obj
         StudentCoursesDAO dao = new StudentCoursesDAO();
-        ArrayList<Student> students = dao.getStudentsByCourseCode(Integer.parseInt(request.getParameter("courseCode")));
+        ArrayList<Student> students = dao.getStudentsByCourseCode(Integer.parseInt(request.getParameter("code")), request.getParameter("semester"));
 
         request.getSession().setAttribute("list", students);
 

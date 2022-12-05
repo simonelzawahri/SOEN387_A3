@@ -56,22 +56,22 @@ public class StudentCoursesDAO {
         //use CourseDAO to get Course data for each course
         CourseDAO courseDAO = new CourseDAO();
         for (Course c: courses) {
-            c.setTitle( courseDAO.selectCourse(c.getCode()).getTitle() );
-            c.setDays( courseDAO.selectCourse(c.getCode()).getDays() );
-            c.setTime( courseDAO.selectCourse(c.getCode()).getTime() );
-            c.setInstructor( courseDAO.selectCourse(c.getCode()).getInstructor() );
-            c.setRoom( courseDAO.selectCourse(c.getCode()).getRoom() );
-            c.setStartDate( courseDAO.selectCourse(c.getCode()).getStartDate() );
-            c.setEndDate( courseDAO.selectCourse(c.getCode()).getEndDate() );
-            c.setInstructorId( courseDAO.selectCourse(c.getCode()).getInstructorId() );
+            c.setTitle( courseDAO.selectCourseByCourseCode(c.getCode()).getTitle() );
+            c.setDays( courseDAO.selectCourseByCourseCode(c.getCode()).getDays() );
+            c.setTime( courseDAO.selectCourseByCourseCode(c.getCode()).getTime() );
+            c.setInstructor( courseDAO.selectCourseByCourseCode(c.getCode()).getInstructor() );
+            c.setRoom( courseDAO.selectCourseByCourseCode(c.getCode()).getRoom() );
+            c.setStartDate( courseDAO.selectCourseByCourseCode(c.getCode()).getStartDate() );
+            c.setEndDate( courseDAO.selectCourseByCourseCode(c.getCode()).getEndDate() );
+            c.setInstructorId( courseDAO.selectCourseByCourseCode(c.getCode()).getInstructorId() );
         }
         return courses;
     }
 
 
 
-    public ArrayList<Student> getStudentsByCourseCode(int code){
-        String stmt = "SELECT * FROM student_courses WHERE Code=?";
+    public ArrayList<Student> getStudentsByCourseCode(int code, String semester){
+        String stmt = "SELECT * FROM student_courses WHERE Code=? AND Semester=?";
         ArrayList<Student> students = new ArrayList<Student>();
         try {
             //establish connection
@@ -79,17 +79,18 @@ public class StudentCoursesDAO {
             //create statement using connection object
             PreparedStatement ps = conn.prepareStatement(stmt);
             ps.setInt(1, code);
+            ps.setString(2, semester);
             //execute query
             ResultSet rs = ps.executeQuery();
             //read data from ResultSet and store students in ArrayList of Student obj
             while(rs.next()){
                 //read data from ResultSet
-                int stu_id = Integer.parseInt(rs.getString("ID"));
-//                int course_code = Integer.parseInt(rs.getString("Code"));
+                int id = Integer.parseInt(rs.getString("ID"));
+//                int code = Integer.parseInt(rs.getString("Code"));
 //                String semester = rs.getString("semester");
                 //set data to Student obj and add to ArrayList
                 Student s = new Student();
-                s.setId(stu_id);
+                s.setId(id);
                 students.add(s);
             }
         } catch (SQLException e) {
@@ -98,7 +99,6 @@ public class StudentCoursesDAO {
         //use UserDAO to get Student data for each student
         UserDAO dao = new UserDAO();
         for (Student s: students) {
-//            s.setId( dao.selectUser(s.getId()).getId() );
             s.setFirstName( dao.selectUser(s.getId()).getFirstName() );
             s.setLastName( dao.selectUser(s.getId()).getLastName() );
             s.setAddress( dao.selectUser(s.getId()).getAddress() );
@@ -108,6 +108,94 @@ public class StudentCoursesDAO {
         }
         return students;
     }
+
+
+    public ArrayList<Course> getMyCourses(int id, String semester){
+        String stmt = "SELECT * FROM student_courses WHERE ID=? AND Semester=?";
+        ArrayList<Course> courses = new ArrayList<Course>();
+        try {
+            //establish connection
+            Connection conn = getConnection();
+            //create statement using connection object
+            PreparedStatement ps = conn.prepareStatement(stmt);
+            ps.setInt(1, id);
+            ps.setString(2, semester);
+            //execute query
+            ResultSet rs = ps.executeQuery();
+            //read data from ResultSet
+            while(rs.next()){
+                //read data from ResultSet
+                int rs_code = Integer.parseInt(rs.getString("Code"));
+                String rs_semester = rs.getString("Semester");
+                //set data to course object
+                Course course = new Course();
+                course.setCode(rs_code);
+                course.setSemester(rs_semester);
+                courses.add(course);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        //use CourseDAO to get course data
+        CourseDAO dao = new CourseDAO();
+        for (Course c: courses) {
+            c.setTitle( dao.selectCourseByCourseCode(c.getCode()).getTitle() );
+            c.setDays( dao.selectCourseByCourseCode(c.getCode()).getDays() );
+            c.setTime( dao.selectCourseByCourseCode(c.getCode()).getTime() );
+            c.setInstructor( dao.selectCourseByCourseCode(c.getCode()).getInstructor() );
+            c.setRoom( dao.selectCourseByCourseCode(c.getCode()).getRoom() );
+            c.setStartDate( dao.selectCourseByCourseCode(c.getCode()).getStartDate() );
+            c.setEndDate( dao.selectCourseByCourseCode(c.getCode()).getEndDate() );
+            c.setInstructorId( dao.selectCourseByCourseCode(c.getCode()).getInstructorId() );
+        }
+        return courses;
+    }
+
+
+
+    public int addCourse(int id, int code, String semester){
+        //check if course and semester combo is in db
+        CourseDAO dao = new CourseDAO();
+        Course c = dao.selectCourseByCourseCode(code);
+        if(c.getCode() == code && c.getSemester().equals(semester) ){
+            //check if student is already enrolled in course that semester
+            ArrayList<Course> myCourses = getMyCourses(id, semester);
+            for (Course co: myCourses) {
+                if(co.getCode() == code){
+                    return 2;
+                }
+            }
+            //add course
+            String stmt = "INSERT INTO student_courses (ID, Code, Semester) VALUES (?, ?, ?);";
+            int result = 0;
+            try{
+                //establish connection
+                Connection conn = getConnection();
+                //create statement using connection object
+                PreparedStatement ps = conn.prepareStatement(stmt);
+                ps.setInt(1, id);
+                ps.setInt(2, code);
+                ps.setString(3, semester);
+                //execute query
+                result = ps.executeUpdate();
+                return 1;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            return 0;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 

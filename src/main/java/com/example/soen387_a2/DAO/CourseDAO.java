@@ -2,12 +2,13 @@ package com.example.soen387_a2.DAO;
 
 
 import com.example.soen387_a2.bean.Course;
+import com.example.soen387_a2.bean.Student;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class CourseDAO {
-
 
     protected Connection getConnection(){
         Connection conn;
@@ -23,7 +24,7 @@ public class CourseDAO {
     }
 
 
-    public Course selectCourse(int code){
+    public Course selectCourseByCourseCode(int code){
         String stmt = "SELECT * FROM course WHERE Code=?";
         Course course = new Course();
         try {
@@ -111,6 +112,67 @@ public class CourseDAO {
         }
         return result;
     }
+
+
+    public ArrayList<Course> selectCoursesBySemester(String semester){
+        String stmt = "SELECT * FROM course WHERE Semester=?";
+        ArrayList<Course> courses = new ArrayList<Course>();
+        try {
+            //establish connection
+            Connection conn = getConnection();
+            //create statement using connection object
+            PreparedStatement ps = conn.prepareStatement(stmt);
+            ps.setString(1, semester);
+            //execute query
+            ResultSet rs = ps.executeQuery();
+            //read data from ResultSet
+            while(rs.next()){
+                //read data from ResultSet
+                int rs_code = Integer.parseInt(rs.getString("Code"));
+                String rs_title = rs.getString("Title");
+                String rs_semester = rs.getString("Semester");
+                String rs_days = rs.getString("Days");
+                String rs_time = rs.getString("Time");
+                String rs_instructor = rs.getString("Instructor");
+                String rs_room = rs.getString("Room");
+                String rs_start = rs.getString("StartDate");
+                String rs_end = rs.getString("EndDate");
+                int rs_instructorID = Integer.parseInt(rs.getString("InstructorID"));
+                //set data to course object
+                Course course = new Course();
+                course.setCode(rs_code);
+                course.setTitle(rs_title);
+                course.setSemester(rs_semester);
+                course.setDays(rs_days);
+                course.setTime(rs_time);
+                course.setInstructor(rs_instructor);
+                course.setRoom(rs_room);
+                course.setStartDate(rs_start);
+                course.setEndDate(rs_end);
+                course.setInstructorId(rs_instructorID);
+                courses.add(course);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return courses;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

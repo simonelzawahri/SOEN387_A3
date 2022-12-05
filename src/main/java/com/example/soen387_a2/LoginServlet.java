@@ -14,7 +14,6 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         //read user input
         int loginID = Integer.parseInt(req.getParameter("loginID"));

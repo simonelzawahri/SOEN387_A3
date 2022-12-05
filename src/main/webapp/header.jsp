@@ -45,8 +45,6 @@
             out.print("<li><a href=\"login.jsp\">Login</a></li>");
             out.print("<li><a href=\"signup.jsp\">Signup</a></li>");
           }
-
-
         %>
       </ul>
     </div>

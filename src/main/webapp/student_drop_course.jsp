@@ -1,10 +1,10 @@
 
 <jsp:include page="header.jsp"/>
 
-<div class="mainCreateCourse">
+<div class="mainDropCourse">
 
   <h1>Drop an existing course: </h1>
-  <form action="<%= request.getContextPath() %>/dropStudentCourse" method="post">
+  <form action="<%= request.getContextPath() %>/DropStudentCourse" method="post">
 
     <label for="Id">Student ID:</label>
     <input type = "number" name = "stu_id" id = "Id" /><br/>
