@@ -110,6 +110,7 @@ public class StudentCoursesDAO {
     }
 
 
+
     public ArrayList<Course> getMyCourses(int id, String semester){
         String stmt = "SELECT * FROM student_courses WHERE ID=? AND Semester=?";
         ArrayList<Course> courses = new ArrayList<Course>();
@@ -189,6 +190,38 @@ public class StudentCoursesDAO {
 
 
 
+    public int dropCourse(int id, int code, String semester){
+        //check if course and semester combo is in db
+        CourseDAO dao = new CourseDAO();
+        Course c = dao.selectCourseByCourseCode(code);
+        if(c.getCode() == code && c.getSemester().equals(semester) ){
+            //check if student is enrolled in course that semester
+            ArrayList<Course> myCourses = getMyCourses(id, semester);
+            for (Course co: myCourses) {
+                if(co.getCode() == code && co.getSemester().equals(semester)){
+                    //drop course
+                    String stmt = "DELETE FROM student_courses WHERE ID=? AND Code=? AND Semester=?;";
+                    int result = 0;
+                    try{
+                        //establish connection
+                        Connection conn = getConnection();
+                        //create statement using connection object
+                        PreparedStatement ps = conn.prepareStatement(stmt);
+                        ps.setInt(1, id);
+                        ps.setInt(2, code);
+                        ps.setString(3, semester);
+                        //execute query
+                        result = ps.executeUpdate();
+                        return 1;
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            return 2;
+        }
+        return 0;
+    }
 
 
 

@@ -3,7 +3,7 @@
 
 <div class="mainAddCourse">
     <h1>Add a course</h1>
-    <form action="<%= request.getContextPath() %>/StudentAddCourse" method="post">
+    <form action="<%= request.getContextPath() %>/AddCourse" method="post">
         <br>
         <label for="Code">Course Code:</label>
         <input type = "number" name = "code" id = "code" />
