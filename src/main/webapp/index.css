@@ -242,13 +242,13 @@ body .mainCreateCourse input#button:hover {
 
 
 body .mainStudentCourseList{
+    text-align: center;
     width: 400px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     border-top: 5px solid #d4af37;
     margin: 100px auto;
-    text-align: center;
 }
 
 body .mainStudentCourseList input#button {
@@ -274,13 +274,13 @@ body .mainStudentCourseList input#button:hover {
 
 
 body .mainCourseStudentList{
+    text-align: center;
     width: 400px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     border-top: 5px solid #d4af37;
     margin: 100px auto;
-    text-align: center;
 }
 
 body .mainCourseStudentList input#button {
@@ -309,13 +309,13 @@ body .mainCourseStudentList input#button:hover {
 
 
 body .mainBrowseCourses{
+    text-align: center;
     width: 400px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     border-top: 5px solid #d4af37;
     margin: 100px auto;
-    text-align: center;
 }
 
 body .mainBrowseCourses input#button {
@@ -340,13 +340,13 @@ body .mainBrowseCourses input#button:hover {
 
 
 body .mainMyCourses{
+    text-align: center;
     width: 400px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     border-top: 5px solid #d4af37;
     margin: 100px auto;
-    text-align: center;
 }
 
 body .mainMyCourses input#button {
@@ -373,13 +373,13 @@ body .mainMyCourses input#button:hover {
 
 
 body .mainAddCourse{
+    text-align: center;
     width: 400px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     border-top: 5px solid #d4af37;
     margin: 100px auto;
-    text-align: center;
 }
 
 body .mainAddCourse input#button {
@@ -405,13 +405,13 @@ body .mainAddCourse input#button:hover {
 
 
 body .mainDropCourse{
+    text-align: center;
     width: 400px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     border-top: 5px solid #d4af37;
     margin: 100px auto;
-    text-align: center;
 }
 
 body .mainDropCourse input#button {
