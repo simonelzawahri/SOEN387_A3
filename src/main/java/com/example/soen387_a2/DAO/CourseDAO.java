@@ -14,7 +14,7 @@ public class CourseDAO {
         Connection conn;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soen387__a1", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soen387__a2", "root", "");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -23,7 +23,7 @@ public class CourseDAO {
         return conn;
     }
 
-
+    //READ
     public Course selectCourseByCourseCode(int code){
         String stmt = "SELECT * FROM course WHERE Code=?";
         Course course = new Course();
@@ -84,7 +84,7 @@ public class CourseDAO {
         }
     }
 
-
+    //CREATE
     public int createCourse(Course course) throws ClassNotFoundException {
         String stmt = "INSERT INTO course" +
                 " (Code, Title, Semester, Days, Time, Instructor, Room, StartDate, EndDate, InstructorID) VALUES " +
@@ -113,7 +113,7 @@ public class CourseDAO {
         return result;
     }
 
-
+    //READ
     public ArrayList<Course> selectCoursesBySemester(String semester){
         String stmt = "SELECT * FROM course WHERE Semester=?";
         ArrayList<Course> courses = new ArrayList<Course>();

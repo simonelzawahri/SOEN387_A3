@@ -25,51 +25,6 @@ public class AdminStudentCourseListServlet extends HttpServlet{
         response.sendRedirect("admin_student_course_list.jsp?gotit=t");
 
 
-
-//
-//
-//
-//        response.setContentType("text/html;charset=UTF-8");
-//        PrintWriter out = response.getWriter();
-//
-//        if(request.getParameter("stu_id") != null){
-//            isID = true;
-//            int stu_id = Integer.parseInt(request.getParameter("stu_id"));
-//            query = "select * from stu_courses WHERE stu_id = " + stu_id;
-//        }else{
-//            int course_code = Integer.parseInt(request.getParameter("course_code"));
-//            query = "select * from stu_courses WHERE course_code = " + course_code;
-//        }
-//
-//        try {
-//            preparedStatement = connection.prepareStatement(query);
-//            resultSet = preparedStatement.executeQuery();
-//
-//            if(isID) out.println("<html><body><div align=\"center\"><h2>The student has following courses registered : </h2>");
-//            else out.println("<html><body><div align=\"center\"><h2>The course has following students enrolled : </h2>");
-//            out.println("<hr></br><table cellspacing='0' cellpadding='5' border='1'>");
-//            out.println("<tr>");
-//            out.println("<td><b>Student ID</b></td>");
-//            out.println("<td><b>Course Code</b></td>");
-//            out.println("<td><b>Semester</b></td>");
-//            out.println("</tr>");
-//
-//            //iterate course resultset of course objs
-//            while(resultSet.next()) {
-//                out.println("<tr>");
-//                out.println("<td>"+resultSet.getString(1) + "</td>");
-//                out.println("<td>"+resultSet.getString(2) + "</td>");
-//                out.println("<td>"+resultSet.getString(3) + "</td>");
-//                out.println("</tr>");
-//            }
-//
-//            out.println("</table></br><hr></div></body></html>");
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-
-
     }
 
 }

@@ -18,7 +18,7 @@ public class StudentCoursesDAO {
         Connection conn;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soen387__a1", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soen387__a2", "root", "");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -27,7 +27,7 @@ public class StudentCoursesDAO {
         return conn;
     }
 
-
+    //READ
     public ArrayList<Course> getCoursesByStudentID(int id){
         String stmt = "SELECT * FROM student_courses WHERE ID=?";
         ArrayList<Course> courses = new ArrayList<Course>();
@@ -69,7 +69,7 @@ public class StudentCoursesDAO {
     }
 
 
-
+    //READ
     public ArrayList<Student> getStudentsByCourseCode(int code, String semester){
         String stmt = "SELECT * FROM student_courses WHERE Code=? AND Semester=?";
         ArrayList<Student> students = new ArrayList<Student>();
@@ -110,7 +110,7 @@ public class StudentCoursesDAO {
     }
 
 
-
+    //READ
     public ArrayList<Course> getMyCourses(int id, String semester){
         String stmt = "SELECT * FROM student_courses WHERE ID=? AND Semester=?";
         ArrayList<Course> courses = new ArrayList<Course>();
@@ -153,7 +153,7 @@ public class StudentCoursesDAO {
     }
 
 
-
+    //CREATE
     public int addCourse(int id, int code, String semester){
         //check if course and semester combo is in db
         CourseDAO dao = new CourseDAO();
@@ -189,7 +189,7 @@ public class StudentCoursesDAO {
     }
 
 
-
+    //DELETE
     public int dropCourse(int id, int code, String semester){
         //check if course and semester combo is in db
         CourseDAO dao = new CourseDAO();
