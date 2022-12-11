@@ -14,7 +14,7 @@ public class CourseDAO {
         Connection conn;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soen387__a2", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/soen387_a3", "root", "");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

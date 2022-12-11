@@ -9,14 +9,14 @@
         }
     %>
 
-    <section style="text-align: left">
+    <section>
         DESIGN PATTERN ---> MVC
         <br>
         MODEL ---> BEAN
         <br>
-        CONTROLLER ---> SERVLET
-        <br>
         VIEW ---> JSP
+        <br>
+        CONTROLLER ---> SERVLET
         <br>
         INHERITANCE MAPPING ---> SINGLE TABLE INHERITANCE
         <br>
